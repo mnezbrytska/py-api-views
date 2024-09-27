@@ -6,7 +6,8 @@ from cinema.views import (
     GenreDetail,
     ActorDetail,
     ActorList,
-    CinemaHallViewSet, MovieViewSet
+    CinemaHallViewSet,
+    MovieViewSet
 )
 
 app_name = "cinema"
