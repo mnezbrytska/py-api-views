@@ -5,14 +5,13 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from cinema.models import Actor, CinemaHall, Movie
-from cinema.models import Genre
+from cinema.models import Actor, CinemaHall, Movie, Genre
 from cinema.serializers import (
     ActorSerializer,
     CinemaHallSerializer,
-    MovieSerializer
+    MovieSerializer,
+    GenreSerializer
 )
-from cinema.serializers import GenreSerializer
 
 
 class GenreList(APIView):
@@ -42,14 +41,14 @@ class GenreDetail(APIView):
         serializer = GenreSerializer(genre, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data)
 
     def patch(self, request, pk):
         genre = self.get_object(pk)
         serializer = GenreSerializer(genre, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data)
 
     def delete(self, request, pk):
         genre = self.get_object(pk)
